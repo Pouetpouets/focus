@@ -8,10 +8,23 @@ function App() {
 
 
 
+
 const getSubscriptions = () => {
-  axios.get('https://youtube.googleapis.com/youtube/v3/subscriptions?part=contentDetails&channelId=UCIJG2skTIeZzd7Cb3YZ7JiA&key=AIzaSyAMGSKwDt3p0TTv4_3cUtpEKuJtS5Ua-uU')
-  .then((res) =>  setDatas(res.data.items))
-}
+  axios.get('https://youtube.googleapis.com/youtube/v3/subscriptions', {
+    params: {
+      part: 'contentDetails',
+      channelId: 'UCIJG2skTIeZzd7Cb3YZ7JiA',
+      /* key: process.env.REACT_APP_YOUTUBE_API_KEY */
+      key: 'AIzaSyAMGSKwDt3p0TTv4_3cUtpEKuJtS5Ua-uU'
+    }
+  })
+  .then((res) => {
+    setDatas(res.data.items);
+  })
+  .catch((error) => {
+    console.error('Error fetching subscriptions:', error);
+  });
+};
 
 useEffect(() => {
   getSubscriptions()
