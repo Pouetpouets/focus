@@ -1,46 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import SubscriptionsTable from './components/SubscriptionTable';
-
-function App() {
-  const [datas, setDatas] = useState([])
+import { GoogleLogin } from './components/GoogleLogin';
 
 
 
 
-
-const getSubscriptions = () => {
-  axios.get('https://youtube.googleapis.com/youtube/v3/subscriptions', {
-    params: {
-      part: 'contentDetails',
-      channelId: 'UCIJG2skTIeZzd7Cb3YZ7JiA',
-      /* key: process.env.REACT_APP_YOUTUBE_API_KEY */
-      maxResults: 50,
-      key: 'AIzaSyAMGSKwDt3p0TTv4_3cUtpEKuJtS5Ua-uU'
-    }
-  })
-  .then((res) => {
-    console.log('subs req', res)
-    setDatas(res.data.items);
-  })
-  .catch((error) => {
-    console.error('Error fetching subscriptions:', error);
-  });
-};
-
-useEffect(() => {
-  getSubscriptions()
-}, [])
-
-console.log(datas)
+const App = () => {
+const [user, setUser] = useState(null);
   return (
+
     <div className="App">
-{/*     {datas.map((item) => <p style={{padding: "20px"}}>
-      {JSON.stringify(item)}
-    </p>)}
- */}
+<GoogleLogin />
     <SubscriptionsTable />
     </div>
   );
