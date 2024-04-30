@@ -6,11 +6,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const YOUR_CLIENT_ID =  '137117864296-i6duo2ldi73u21dearanqcgpjf3hd29q.apps.googleusercontent.com';
 export const YOUR_CLIENT_SECRET = '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';
-
-console.log(
-  'YOUR_CLIENT_SECRET', YOUR_CLIENT_SECRET
-)
-
 const App = () => {
   const responseMessage = (response) => {
     console.log(response);
